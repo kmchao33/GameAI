@@ -3,11 +3,23 @@ import matplotlib.pyplot as plt
 
 symbols = {1:'x', -1:'o', 0:' '}
 
+'''
+Description: 
+    analyze the winner's move of a game
+
+Parameters: 
+    list_of_lines: the log of single game
+    winner: who wins
+
+Return: 
+    array: all moves the winner takes in this game
+    num_of_moves: number of moves the winner takes
+'''
 def analyze_moves_of_a_game(list_of_lines, winner): # winner: -1 if o wins, 1 if x wins
     array = np.zeros((3,3), dtype=int)
     num_of_moves = 0
     
-    # only need to see the last array 
+    # only examine the final state of game 
     length_of_list = len(list_of_lines)
     for i in xrange(3,0,-1):
         elements = list_of_lines[length_of_list-i].split("'")
@@ -32,6 +44,12 @@ if __name__ == '__main__':
         
         lines_in_a_game = []
         sum_of_moves = [0, 0]
+        
+        '''
+        Each time we load one line from log.txt file. 
+        Those lines recording the same game will be stored in lines_in_a_game[].
+        Whenever we detect the ending of game, we analyze lines_in_a_game[] and further empty it.
+        '''
         for line in f:
             words = line.split(' ')
             if (words[0] == 'player'): # game over and there's a winner
@@ -66,7 +84,7 @@ if __name__ == '__main__':
     print "\no statistics:\n", o_statistics, "\n", np.divide(o_statistics, float(sum_of_moves[0]))
     print "\nx statistics:\n", x_statistics, "\n", np.divide(x_statistics, float(sum_of_moves[1])) 
     
-    ## plot the result
+    # plot the result
     values = []
     values.extend((x_win, o_win, num_of_draw))
     ind = np.arange(3)
