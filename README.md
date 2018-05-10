@@ -4,36 +4,47 @@ implement a probabilistic strategy for Tic Tac Toe
 
 ## Usage
 
-### running tic-tac-toe.py and m_tic_tac_toe.py
+### running "tic-tac-toe.py", "tic_tac_toe_probabilistic.py" and "tic_tac_toe_heuristic.py"
 
-tic-tac-toe.py is the original version, making a move uniformly at random. But in m_tic_tac_toe.py, we make a move according to the statistics we obtain from running tic-tac-toe.py
+tic-tac-toe.py is the original version, making a move uniformly at random. And in tic_tac_toe_probabilistic.py (tic_tac_toe_heuristic.py), we make a move according to the probablistic(heuristic) strategy.
 
 To run them, use 
 ```
 python tic-tac-toe.py
-python m_tic_tac_toe.py
+python tic_tac_toe_probabilistic.py
+python tic_tac_toe_heuristic.py
 ```
 
 
 ### running write_log_file.py
 
 write_log_file.py writes the log of entire tournament to an output file. You can also specify the number of game plays in this tournament and the tic-tac-toe version in the command line. 
+The default version is the original version.
 
 To run it, use
 ```
-python write_log_file.py [-m] <NumberOfGamePlays=1000> 
+python write_log_file.py [-p, -h] <NumberOfGamePlays=1000> 
 
 optional argument:
--m : run the modified version of tic tac toe
+-p, -h : run the probabilistic or heuristic version of tic tac toe
+
+default version: 
+original version, i.e. run "python write_log_file.py <NumberOfGamePlays=1000>"
 ```
-And the output file will be put in ./log/ folder and named game_log.txt (or m_game_log.txt), depending on which version of tic tac toe you use. 
+And the output file will be put in ./log/ folder and named game_log.txt, p_game_log.txt or h_game_log.txt, depending on the version of tic tac toe. 
 
 ### running main.py
 
-main.py loads the game_log.txt (or m_game_log.txt) and further creates a statistic of auspicious positions on the tic tac toe board. At last, the normalized statistic data is saved in the output file.
+main.py loads the game log file and further creates a statistic of auspicious positions on the tic tac toe board. Two output files will be created to store the normalized statistics if the original version of game is chosen. 
 
 To run main.py, use
 ```
-python main.py 
+Usage: python main.py [-p, -h]
+
+optional argument:
+-p, -h : load the log file of the probabilistic or heuristic version of tic tac toe
+
+default version of game log: 
+original version, i.e. run "python main.py"
 ```
-Two output files, x_prob.txt and o_prob.txt, will be created inside ./prob/ folder. 
+Two output files, x_prob.txt and o_prob.txt, will be put inside ./prob/ folder. 
